@@ -10,7 +10,6 @@ services:
       - ./src:/var/www/html
     depends_on:
       - laravel_blog
-    container_name: laravel-nginx
     networks:
       - laravel
 
