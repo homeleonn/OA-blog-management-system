@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostIndexRequest;
 use App\Models\Post;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -17,9 +18,9 @@ class PostController extends Controller
      * @param Request $request HTTP-запит
      * @return Factory|View|Application Повертає представлення з даними статей
      */
-    public function index(Request $request): Factory|View|Application
+        public function index(PostIndexRequest $request): Factory|View|Application
     {
-        $search = $request->query('search');
+        $search = $request->validated('search');
 
         $posts = Post::with('category')
             ->when($search, function ($query, $search) {

@@ -24,7 +24,7 @@ class PostIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            'search' => 'nullable|string|max:255'
+            'search' => 'nullable|string|min:2|max:255'
         ];
     }
 }

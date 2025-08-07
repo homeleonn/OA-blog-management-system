@@ -56,6 +56,7 @@
             letter-spacing: 0.05em;
         }
     </style>
+    @include('layouts.errors')
     <form method="GET" action="{{ route('posts.index') }}">
         <input type="text" name="search" value="{{ old('search', $search ?? '') }}" placeholder="Пошук за заголовком">
         <button type="submit">Шукати</button>
