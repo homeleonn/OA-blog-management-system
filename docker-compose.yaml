@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - laravel_blog
+    container_name: laravel-nginx
+    networks:
+      - laravel
+
+  laravel_blog:
+    image: php:8.0-fpm-alpine
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - laravel
+
+  composer:
+    build:
+      context: ./docker/composer
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ["composer"]
+
+networks:
+  laravel:
+    driver: bridge
