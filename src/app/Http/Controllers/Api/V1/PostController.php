@@ -10,12 +10,14 @@ use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
 {
-    public function index(): Collection|array
+    public function index(): JsonResponse
     {
-        return Post::with('category')->get();
+        $posts = Post::with('category')->get();
+
+        return response()->json($posts);
     }
 
-    public function show($id): JsonResponse
+    public function show(int $id): JsonResponse
     {
         $post = Post::with('category')->find($id);
 
@@ -26,7 +28,7 @@ class PostController extends Controller
         return response()->json($post);
     }
 
-    public function addComment($id, PostAddCommentRequest $request): JsonResponse
+    public function addComment(int $id, PostAddCommentRequest $request): JsonResponse
     {
         $post = Post::find($id);
 

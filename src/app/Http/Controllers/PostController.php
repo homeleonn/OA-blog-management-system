@@ -15,10 +15,10 @@ class PostController extends Controller
      * Відображає список статей з пагінацією.
      * Підтримує пошук за заголовком через GET-параметр "search".
      *
-     * @param Request $request HTTP-запит
+     * @param PostIndexRequest $request HTTP-запит
      * @return Factory|View|Application Повертає представлення з даними статей
      */
-        public function index(PostIndexRequest $request): Factory|View|Application
+    public function index(PostIndexRequest $request): Factory|View|Application
     {
         $search = $request->validated('search');
 
